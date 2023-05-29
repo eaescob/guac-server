@@ -1,0 +1,43 @@
+--- apiVersion: apps/v1 kind: Deployment
+metadata:
+  name: guac-server
+  labels:
+    app: guac-server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: guac-server
+  template:
+    metadata:
+      labels:
+        app: guac-server
+    spec:
+      containers:
+      - name: guac-server
+        image: emilioesc/guac-server:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          # Run the container as nobody:nogroup
+          runAsUser: 65534
+          runAsGroup: 65534
+          capabilities:
+            drop:
+            - NET_RAW
+        resources:
+          requests:
+            cpu: 50m
+            memory: 16Mi
+          limits:
+            memory: 32M
+
