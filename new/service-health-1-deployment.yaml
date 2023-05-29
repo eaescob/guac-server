@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: service-health-1
+  name: service-health-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: service-health-1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/new-default: "true"
+        io.kompose.service: service-health-1
+    spec:
+      containers:
+        - args:
+            - /bin/bash
+            - -c
+            - |
+              echo "checking-for-services";
+              until curl -I http://nats:8222 > /dev/null 2>&1; do sleep 5; done;
+              echo "nats-up";
+              # Neo4j is turned down for now since we are currently only using the in memory backend
+              # until curl -I http://neo4j:7474> /dev/null 2>&1; do sleep 5; done;
+              # echo "neo4j-up";
+          image: local-healthcheck
+          name: service-health-1
+          resources: {}
+          stdin: true
+          tty: true
+      restartPolicy: Always
+status: {}

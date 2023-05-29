@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.network/new-default: "true"
+    io.kompose.service: depsdev-collector
+  name: depsdev-collector
+spec:
+  containers:
+    - args:
+        - /opt/guac/guaccollect
+        - deps_dev
+      image: local-organic-guac
+      name: depsdev-collector
+      resources: {}
+      volumeMounts:
+        - mountPath: /guac
+          name: depsdev-collector-claim0
+      workingDir: /guac
+  restartPolicy: OnFailure
+  volumes:
+    - name: depsdev-collector-claim0
+      persistentVolumeClaim:
+        claimName: depsdev-collector-claim0
+status: {}

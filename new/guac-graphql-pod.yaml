@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.network/new-default: "true"
+    io.kompose.service: guac-graphql
+  name: guac-graphql
+spec:
+  containers:
+    - args:
+        - /opt/guac/guacgql
+      image: local-organic-guac
+      name: guac-graphql
+      ports:
+        - containerPort: 8080
+      resources: {}
+      volumeMounts:
+        - mountPath: /guac
+          name: guac-graphql-claim0
+      workingDir: /guac
+  restartPolicy: OnFailure
+  volumes:
+    - name: guac-graphql-claim0
+      persistentVolumeClaim:
+        claimName: guac-graphql-claim0
+status: {}

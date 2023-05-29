@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.network/new-default: "true"
+    io.kompose.service: guac-collectsub
+  name: guac-collectsub
+spec:
+  containers:
+    - args:
+        - /opt/guac/guaccsub
+      image: local-organic-guac
+      name: guac-collectsub
+      ports:
+        - containerPort: 2782
+      resources: {}
+      volumeMounts:
+        - mountPath: /guac
+          name: guac-collectsub-claim0
+      workingDir: /guac
+  restartPolicy: OnFailure
+  volumes:
+    - name: guac-collectsub-claim0
+      persistentVolumeClaim:
+        claimName: guac-collectsub-claim0
+status: {}

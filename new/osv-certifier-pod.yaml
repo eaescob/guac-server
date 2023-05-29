@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.network/new-default: "true"
+    io.kompose.service: osv-certifier
+  name: osv-certifier
+spec:
+  containers:
+    - args:
+        - /opt/guac/guacone
+        - certifier
+        - osv
+      image: local-organic-guac
+      name: osv-certifier
+      resources: {}
+      volumeMounts:
+        - mountPath: /guac
+          name: osv-certifier-claim0
+      workingDir: /guac
+  restartPolicy: OnFailure
+  volumes:
+    - name: osv-certifier-claim0
+      persistentVolumeClaim:
+        claimName: osv-certifier-claim0
+status: {}
