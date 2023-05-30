@@ -15,7 +15,7 @@ spec:
         - /opt/guac/guacone
         - certifier
         - osv
-      image: emilioesc/guac-server:latest
+      image: emilioesc/guac-server:jetson
       name: osv-certifier
       resources: {}
       volumeMounts:

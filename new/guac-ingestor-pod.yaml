@@ -13,7 +13,7 @@ spec:
   containers:
     - args:
         - /opt/guac/guacingest
-      image: emilioesc/guac-server:latest
+      image: emilioesc/guac-server:jetson
       name: guac-ingestor
       resources: {}
       volumeMounts:

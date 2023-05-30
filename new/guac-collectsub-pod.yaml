@@ -13,7 +13,7 @@ spec:
   containers:
     - args:
         - /opt/guac/guaccsub
-      image: emilioesc/guac-server:latest
+      image: emilioesc/guac-server:jetson
       name: guac-collectsub
       ports:
         - containerPort: 2782

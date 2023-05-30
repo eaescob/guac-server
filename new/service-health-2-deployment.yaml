@@ -34,7 +34,7 @@ spec:
               echo "guac collectsub up";
               until curl -I http://guac-graphql:8080/query > /dev/null 2>&1; do sleep 5; done;
               echo "graphql up";
-          image: emilioesc/guac-healthcheck:latest
+          image: emilioesc/guac-healthcheck:jetson
           name: service-health-2
           resources: {}
           stdin: true

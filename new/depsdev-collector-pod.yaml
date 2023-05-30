@@ -14,7 +14,7 @@ spec:
     - args:
         - /opt/guac/guaccollect
         - deps_dev
-      image: emilioesc/guac-server:latest
+      image: emilioesc/guac-server:jetson
       name: depsdev-collector
       resources: {}
       volumeMounts:
