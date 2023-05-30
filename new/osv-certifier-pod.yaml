@@ -15,7 +15,7 @@ spec:
         - /opt/guac/guacone
         - certifier
         - osv
-      image: local-organic-guac
+      image: emilioesc/guac-server:latest
       name: osv-certifier
       resources: {}
       volumeMounts:

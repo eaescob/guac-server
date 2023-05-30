@@ -35,7 +35,7 @@ spec:
               # Neo4j is turned down for now since we are currently only using the in memory backend
               # until curl -I http://neo4j:7474> /dev/null 2>&1; do sleep 5; done;
               # echo "neo4j-up";
-          image: local-healthcheck
+          image: emilioesc/guac-healthcheck:latest
           name: service-health-1
           resources: {}
           stdin: true

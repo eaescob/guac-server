@@ -13,7 +13,7 @@ spec:
   containers:
     - args:
         - /opt/guac/guacgql
-      image: local-organic-guac
+      image: emilioesc/guac-server:latest
       name: guac-graphql
       ports:
         - containerPort: 8080

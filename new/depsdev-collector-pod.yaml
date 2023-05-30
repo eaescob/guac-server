@@ -14,7 +14,7 @@ spec:
     - args:
         - /opt/guac/guaccollect
         - deps_dev
-      image: local-organic-guac
+      image: emilioesc/guac-server:latest
       name: depsdev-collector
       resources: {}
       volumeMounts:

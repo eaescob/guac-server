@@ -14,7 +14,7 @@ spec:
     - args:
         - /opt/guac/guaccollect
         - image
-      image: local-organic-guac
+      image: emilioesc/guac-server:latest
       name: oci-collector
       resources: {}
       volumeMounts:
